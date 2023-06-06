@@ -2,36 +2,32 @@
 #include <vector>
 #include <algorithm>
 #include <string>
-#include <map>
-#include <cmath>
-using namespace std;
 #include <sstream>
+using namespace std;
 
-string convert(int input, int num) {
+void convert(int input, int num) {
     string result;
-    stringstream ss;
-
+    stringstream s;
     while (input > 0) {
-        int remainder = input % num;
-        if (remainder < 10)
-            ss << remainder;
+        int temp = input % num;
+        if (temp < 10)
+            s << temp;
         else
-            ss << static_cast<char>('A' + (remainder - 10));
+            s << char('A' + (temp - 10));
 
         input /= num;
     }
 
-    result = ss.str();
+    result = s.str();
     reverse(result.begin(), result.end());
-    return result;
+    cout<<result<<endl;
 }
 
 int main() {
     int num, input;
     
-   while(cin>>num>>input && num!=EOF){
-    string result = convert(input, num);
-    cout<< result << endl;
+   while(cin>>num>>input){
+    convert(input, num);
    }
     return 0;
 }
